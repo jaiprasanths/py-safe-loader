@@ -199,14 +199,14 @@ class SafeLoader:
         def trace_behavior(frame, event, arg):
             if event == 'call':
                 func_name = frame.f_code.co_name.lower()
-                # Detect file operations
-                if any(kw in func_name for kw in ['open', 'read', 'write', 'file', 'path']):
+                # Detect file operations (use prefix matching to avoid overly broad hits)
+                if any(func_name.startswith(kw) for kw in ['open', 'read', 'write', 'file', 'path']):
                     behavioral_flags['file_access'] = True
-                # Detect network operations
-                if any(kw in func_name for kw in ['socket', 'connect', 'request', 'urlopen', 'get', 'post']):
+                # Detect network operations (avoid generic names like "get" and "post")
+                if any(func_name.startswith(kw) for kw in ['socket', 'connect', 'request', 'urlopen']):
                     behavioral_flags['network_access'] = True
-                # Detect introspection
-                if any(kw in func_name for kw in ['globals', 'locals', 'dir', 'getattr', 'setattr', 'vars']):
+                # Detect introspection (match exact known introspection helpers)
+                if func_name in {'globals', 'locals', 'dir', 'getattr', 'setattr', 'vars'}:
                     behavioral_flags['introspection'] = True
             return trace_behavior
         
