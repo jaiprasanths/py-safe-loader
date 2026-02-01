@@ -279,7 +279,7 @@ class SafeLoader:
         # Secret leakage patterns (non-blocking scan)
         secret_patterns = [
             r'(?i)password\s*[=:]\s*[\'"][^\'"]{8,}[\'"]',
-            r'(?i)api[_-]?key\s*[=:]\s*[\'"][a-z0-9]{20,}[\'"]',
+            r'(?i)api[_-]?key\s*[=:]\s*[\'"][a-z0-9_]{20,}[\'"]',
             r'(?i)token\s*[=:]\s*[\'"][a-z0-9._-]{30,}[\'"]',
             r'(?i)secret\s*[=:]\s*[\'"][^\'"]{15,}[\'"]'
         ]
