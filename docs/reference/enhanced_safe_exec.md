@@ -45,7 +45,7 @@ success, ns, error = loader.safe_exec_code(code)
 |-- Scenario 			        |-- Benefit
 |-- ----------------------------|-- ------------------------------------------------
 |-- Test suites 		        |-- Legitimate imports work; warnings don't break CI/CD
-|-- Security audits	 	        |-- Visibility into risky patterns without false positives
+|-- Security audits	 	        |-- Visibility into risky patterns with conservative heuristics (may include some benign activity)
 |-- Secret leakage prevention 	|-- Catches accidental credential commits in test output
 |-- Resource protection 	    |-- Detects log bombing attempts (>1MB outputs)
 
