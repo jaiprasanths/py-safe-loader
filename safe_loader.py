@@ -220,7 +220,8 @@ class SafeLoader:
             except Exception as e:
                 # Never let tracing errors affect the code being executed
                 self._log(f"Error in trace_behavior: {e}", "ERROR")
-            return trace_behavior
+            # Do not continue tracing further events for this frame
+            return None
         
         # Enable tracing before execution
         original_trace = sys.gettrace()
