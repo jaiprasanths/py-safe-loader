@@ -182,7 +182,7 @@ class SafeLoader:
             )
         
         # Long obfuscated strings (hex/unicode encoding)
-        if re.search(r'\\x[0-9a-f]{2}|\\u[0-9a-f]{4}', code) and len(code) < 200:
+        if re.search(r'\\x[0-9a-f]{2}|\\u[0-9a-f]{4}', code):
             obfuscation_warnings.append("Hex/unicode escape sequences detected (possible obfuscation)")
         
         # Report obfuscation warnings
