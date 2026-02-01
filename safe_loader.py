@@ -167,7 +167,7 @@ class SafeLoader:
         obfuscation_warnings = []
         
         # Base64/encoding evasion patterns
-        if re.search(r'base64\.b64decode|exec\(|eval\(|compile\(|__import__', code, re.IGNORECASE):
+        if re.search(r'base64(\.b64decode)?|exec\(|eval\(|compile\(|__import__', code, re.IGNORECASE):
             obfuscation_warnings.append("Base64/exec/eval patterns detected (potential evasion attempt)")
         
         # Excessive dunder attributes (introspection probing)
